@@ -1,0 +1,19 @@
+{
+  "name": "memopress",
+  "version": "1.0.0",
+  "description": "lib for working w/ Memo/Blockpress OP_RETURN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigearth/memopress.git"
+  },
+  "author": "BITBOX",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bigearth/memopress/issues"
+  },
+  "homepage": "https://github.com/bigearth/memopress#readme"
+}
