@@ -7,7 +7,7 @@ Helper methods for reading/writing to the Bitcoin Cash blockchain per the [Memo]
 Install
 
 ```js
-npm install memopres --save
+npm install memopress --save
 ```
 
 Require
