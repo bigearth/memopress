@@ -1,3 +1,12 @@
+let BITBOXCli = require('bitbox-cli/lib/bitboxcli').default;
+let BITBOX = new BITBOXCli({
+  protocol: 'http',
+  host: '127.0.0.1',
+  port: 8332,
+  username: '',
+  password: '',
+  corsproxy: 'remote'
+});
 let _ = require('underscore');
 
 exports.decode = function(op_return) {
@@ -6,6 +15,7 @@ exports.decode = function(op_return) {
 
   let split = op_return.split(" ");
   let prefix = +split[1];
+  let data;
   if(_.includes(memoPrefixes, prefix)){
 
     let memo = [
@@ -19,28 +29,60 @@ exports.decode = function(op_return) {
       ['6d0C', 3181, 'Post Topic Message']
     ];
 
-    let obj;
     memo.forEach((val, index) => {
       if(prefix === val[1]) {
         let asm
         if(prefix === 877) {
-          asm = `${split[0]} ${memoo[index][0]} ${split[3]}`;
+          asm = `${split[0]} ${memo[index][0]} ${split[3]}`;
         } else {
           asm = `${split[0]} ${memo[index][0]} ${split[2]}`;
         }
-        let fromASM = this.props.bitbox.Script.fromASM(asm)
-        let decoded = this.props.bitbox.Script.decode(fromASM)
-        obj = {
-          asm: asm,
-          prefix: memo[index][0],
+        let fromASM = BITBOX.Script.fromASM(asm)
+        let decoded = BITBOX.Script.decode(fromASM)
+        data = {
+          service: 'memo',
+          prefix: `0x${memo[index][0]}`,
           action: memo[index][2],
           message: decoded[2].toString('ascii')
         };
       }
     });
-
-    console.log("memo: ", obj);
   } else if(_.includes(blockpressPrefixes, prefix)){
-    console.log("blockpress: ", prefix);
+
+    let blockpress = [
+      ['8d01', 397, 'Set Name'],
+      ['8d02', 653, 'Create Text Post'],
+      ['8d03', 909, 'Reply'],
+      ['8d04', 1165, 'Like'],
+      ['8d06', 1677, 'Follow'],
+      ['8d07', 1933, 'Unfollow'],
+      ['8d08', 2189, 'Set Profile Header'],
+      ['8d09', 2445, 'Create Media Post'],
+      ['8d10', 4237, 'Set Profile Avatar'],
+      ['8d11', 4493, 'Create Post in Community']
+    ];
+
+    blockpress.forEach((val, index) => {
+      if(prefix === val[1]) {
+        let asm
+        if(prefix === 2445 || prefix === 4493) {
+          asm = `${split[0]} ${blockpress[index][0]} ${split[3]}`;
+        } else {
+          asm = `${split[0]} ${blockpress[index][0]} ${split[2]}`;
+        }
+
+        let fromASM = BITBOX.Script.fromASM(asm);
+        let decoded = BITBOX.Script.decode(fromASM);
+
+        data = {
+          service: 'blockpress',
+          prefix: `0x${blockpress[index][0]}`,
+          action: blockpress[index][2],
+          message: decoded[2].toString('ascii')
+        };
+      }
+    });
   }
+
+  return data;
 }

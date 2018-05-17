@@ -18,5 +18,8 @@
   "homepage": "https://github.com/bigearth/memopress#readme",
   "dependencies": {
     "underscore": "^1.9.0"
+  },
+  "peerDependencies": {
+    "bitbox-cli": "0.7.27"
   }
 }
