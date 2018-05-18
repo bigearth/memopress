@@ -1,0 +1,13 @@
+{
+  "memo": [
+    {
+      "asm": "OP_RETURN 365 746573742032",
+      "data": {
+        "service": "memo",
+        "prefix": "0x6d01",
+        "action": "Set Name",
+        "message": "test 2"
+      }
+    }
+  ]
+}
