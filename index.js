@@ -8,15 +8,72 @@ let BITBOX = new BITBOXCli({
   corsproxy: 'remote'
 });
 let _ = require('underscore');
+let memoPrefixes = ['0x6d01', '0x6d02', ' 0x6d03', '0x6d04', '0x6d05', '0x6d06', '0x6d07', '0x6d08', '0x6d09', '0x6d0A', '0x6d0B', '0x6d0C'];
+let memoConvertedPrefixes = [365, 621, 877, 1133, 1389, 1645, 1901, 3181];
 
-exports.decode = function(op_return) {
-  let memoPrefixes = [365, 621, 877, 1133, 1389, 1645, 1901, 3181];
-  let blockpressPrefixes = [397, 653, 909, 1165, 1677, 1933, 2189, 2445, 4237, 4493];
+let blockpressPrefixes = ['0x8d01', '0x8d02', '0x8d03', '0x8d04', '0x8d05', '0x8d06', '0x8d07', '0x8d08', '0x8d09', '0x8d01', '0x8d10', '0x8d11'];
+let blockpressConvertedPrefixes = [397, 653, 909, 1165, 1677, 1933, 2189, 2445, 4237, 4493];
+
+let setName = (name) => {
+  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(name)];
+  return BITBOX.Script.encode(script)
+}
+
+let postMemo = (memo) => {
+  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d02', 'hex'), Buffer.from(memo)];
+  return BITBOX.Script.encode(script)
+}
+
+let like = (txHash) => {
+  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d04', 'hex'), Buffer.from(txHash)];
+  return BITBOX.Script.encode(script)
+}
+
+let follow = (address) => {
+  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d06', 'hex'), Buffer.from(address)];
+  return BITBOX.Script.encode(script)
+}
+
+let unfollow = (address) => {
+  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d07', 'hex'), Buffer.from(address)];
+  return BITBOX.Script.encode(script)
+}
+
+// exports.encode = (prefix, value) => {
+//   let data;
+//   if(_.includes(memoPrefixes, prefix)){
+//     let script;
+//     if(prefix === 365) {
+//       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(value)];
+//     } else if(prefix === 621) {
+//       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d02', 'hex'), Buffer.from(value)];
+//     } else if(prefix === 877) {
+//       ['6d03', 877, 'Reply'],
+//     } else if(prefix === 1133) {
+//       ['6d04', 1133, 'Like'],
+//     } else if(prefix === 1389) {
+//       ['6d05', 1389, 'Set Profile Text'],
+//     } else if(prefix === 1645) {
+//       ['6d06', 1645, 'Follow'],
+//     } else if(prefix === 1901) {
+//       ['6d07', 1901, 'Unfollow'],
+//     } else if(prefix === 3181) {
+//       ['6d0C', 3181, 'Post Topic Message']
+//
+//     }
+//
+//     return BITBOX.Script.encode(script)
+//   } else if(_.includes(blockpressPrefixes, prefix)) {
+//
+//   }
+// };
+
+exports.decode = (op_return) => {
 
   let split = op_return.split(" ");
   let prefix = +split[1];
   let data;
-  if(_.includes(memoPrefixes, prefix)){
+  if(_.includes(memoConvertedPrefixes, prefix)){
 
     let memo = [
       ['6d01', 365, 'Set Name'],
@@ -47,7 +104,7 @@ exports.decode = function(op_return) {
         };
       }
     });
-  } else if(_.includes(blockpressPrefixes, prefix)){
+  } else if(_.includes(blockpressConvertedPrefixes, prefix)){
 
     let blockpress = [
       ['8d01', 397, 'Set Name'],
