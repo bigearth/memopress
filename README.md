@@ -16,6 +16,26 @@ Require
 let memopress = require('memopress');
 ```
 
+### Encode
+
+#### Memo
+
+```js
+memopress.encode('0x6d01', 'nakamoto')
+// <Buffer 6a 02 6d 01 08 6e 61 6b 61 6d 6f 74 6f>
+
+memopress.encode('0x6d02', 'Hello BITBOX')
+// <Buffer 6a 02 6d 02 0c 48 65 6c 6c 6f 20 42 49 54 42 4f 58>
+
+memopress.encode('0x6d03', {txHash: '99c38277ce297711b78ff09aa6857417a3b8df1873987b2a17b44b27877972ab', message: 'Great!'});
+// <Buffer 6a 02 6d 03 20 ab 72 79 87 27 4b b4 17 2a 7b 98 73 18 df b8 a3 17 74 85 a6 9a f0 8f b7 11 77 29 ce 77 82 c3 99 06 47 72 65 61 74 21>
+
+memopress.encode('0x6d04', 'c21cdbc06393e291fe325649a6b52409759c1abf98950165f818abd44812ce12');
+// <Buffer 6a 02 6d 04 20 12 ce 12 48 d4 ab 18 f8 65 01 95 98 bf 1a 9c 75 09 24 b5 a6 49 56 32 fe 91 e2 93 63 c0 db 1c c2>
+
+memopress.encode('0x6d05', 'This is my profile text');
+```
+
 ### Decode
 
 #### Memo
