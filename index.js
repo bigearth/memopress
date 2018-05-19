@@ -31,8 +31,8 @@ let blockpressConvertedPrefixes = [397, 653, 909, 1165, 1677, 1933, 2189, 2445, 
 
 exports.encode = (prefix, value) => {
   let data;
+  let script;
   if(_.includes(memoPrefixes, prefix)){
-    let script;
     if(prefix === '0x6d01') {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(value)];
     } else if(prefix === '0x6d02') {
@@ -50,9 +50,12 @@ exports.encode = (prefix, value) => {
     } else if(prefix === '0x6d0C') {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d0C', 'hex'), Buffer.from(value.topic), Buffer.from(value.message)];
     }
-
-    return BITBOX.Script.encode(script)
+  } else if(_.includes(blockpressPrefixes, prefix)){
+    if(prefix === '0x8d01') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d01', 'hex'), Buffer.from(value)];
+    }
   }
+  return BITBOX.Script.encode(script)
 };
 
 exports.decode = (op_return) => {

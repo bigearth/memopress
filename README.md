@@ -46,6 +46,12 @@ memopress.encode('0x6d0C', 'Crypto', 'BCH is Bitcoin');
 // <Buffer 6a 02 6d 0c 06 43 72 79 70 74 6f 0e 42 43 48 20 69 73 20 42 69 74 63 6f 69 6e>
 ```
 
+#### BlockPress
+
+```js
+memopress.encode('0x8d01', 'nakamoto')
+```
+
 ### Decode
 
 #### Memo
