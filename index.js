@@ -19,54 +19,17 @@ let setName = (name) => {
   return BITBOX.Script.encode(script)
 }
 
-let postMemo = (memo) => {
-  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d02', 'hex'), Buffer.from(memo)];
-  return BITBOX.Script.encode(script)
-}
+exports.encode = (prefix, value) => {
+  let data;
+  if(_.includes(memoPrefixes, prefix)){
+    let script;
+    if(prefix === '0x6d01') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(value)];
+    }
 
-let like = (txHash) => {
-  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d04', 'hex'), Buffer.from(txHash)];
-  return BITBOX.Script.encode(script)
-}
-
-let follow = (address) => {
-  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d06', 'hex'), Buffer.from(address)];
-  return BITBOX.Script.encode(script)
-}
-
-let unfollow = (address) => {
-  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d07', 'hex'), Buffer.from(address)];
-  return BITBOX.Script.encode(script)
-}
-
-// exports.encode = (prefix, value) => {
-//   let data;
-//   if(_.includes(memoPrefixes, prefix)){
-//     let script;
-//     if(prefix === 365) {
-//       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(value)];
-//     } else if(prefix === 621) {
-//       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d02', 'hex'), Buffer.from(value)];
-//     } else if(prefix === 877) {
-//       ['6d03', 877, 'Reply'],
-//     } else if(prefix === 1133) {
-//       ['6d04', 1133, 'Like'],
-//     } else if(prefix === 1389) {
-//       ['6d05', 1389, 'Set Profile Text'],
-//     } else if(prefix === 1645) {
-//       ['6d06', 1645, 'Follow'],
-//     } else if(prefix === 1901) {
-//       ['6d07', 1901, 'Unfollow'],
-//     } else if(prefix === 3181) {
-//       ['6d0C', 3181, 'Post Topic Message']
-//
-//     }
-//
-//     return BITBOX.Script.encode(script)
-//   } else if(_.includes(blockpressPrefixes, prefix)) {
-//
-//   }
-// };
+    return BITBOX.Script.encode(script)
+  }
+};
 
 exports.decode = (op_return) => {
 
