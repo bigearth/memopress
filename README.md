@@ -43,7 +43,7 @@ memopress.encode('0x6d07', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg7
 // <Buffer 6a 02 6d 07 36 62 69 74 63 6f 69 6e 63 61 73 68 3a 71 7a 7a 73 65 63 78 77 76 38 67 6d 33 34 78 6d 68 68 33 36 30 79 74 75 7a 65 71 78 72 6a 61 37 7a ... >
 
 memopress.encode('0x6d0C', 'Crypto', 'BCH is Bitcoin');
-// <Buffer 6a 02 6d 07 06 43 72 79 70 74 6f 0e 42 43 48 20 69 73 20 42 69 74 63 6f 69 6e>
+// <Buffer 6a 02 6d 0c 06 43 72 79 70 74 6f 0e 42 43 48 20 69 73 20 42 69 74 63 6f 69 6e>
 ```
 
 ### Decode
