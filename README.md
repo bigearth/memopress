@@ -42,7 +42,7 @@ memopress.encode('0x6d06', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg7
 memopress.encode('0x6d07', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
 // <Buffer 6a 02 6d 07 36 62 69 74 63 6f 69 6e 63 61 73 68 3a 71 7a 7a 73 65 63 78 77 76 38 67 6d 33 34 78 6d 68 68 33 36 30 79 74 75 7a 65 71 78 72 6a 61 37 7a ... >
 
-memopress.encode('0x6d0C', 'Crypto', 'BCH is Bitcoin');
+memopress.encode('0x6d0C', {topic: 'Crypto', message: 'BCH is Bitcoin'});
 // <Buffer 6a 02 6d 0c 06 43 72 79 70 74 6f 0e 42 43 48 20 69 73 20 42 69 74 63 6f 69 6e>
 ```
 
@@ -55,8 +55,26 @@ memopress.encode('0x8d01', 'nakamoto')
 memopress.encode('0x8d02', 'Hello BITBOX')
 // <Buffer 6a 02 8d 02 0c 48 65 6c 6c 6f 20 42 49 54 42 4f 58>
 
-memopress.encode('0x8d03', {txHash: '99c38277ce297711b78ff09aa6857417a3b8df1873987b2a17b44b27877972ab', message: 'Great!'});
-// <Buffer 6a 02 8d 03 20 ab 72 79 87 27 4b b4 17 2a 7b 98 73 18 df b8 a3 17 74 85 a6 9a f0 8f b7 11 77 29 ce 77 82 c3 99 06 47 72 65 61 74 21>
+memopress.encode('0x8d03', {txHash: '7fa9329e7a7613fd51c1990d959c42c2b077e9dd962c7c095e9b7d44fe568af2', message: 'Great!'});
+// <Buffer 6a 02 8d 03 20 7f a9 32 9e 7a 76 13 fd 51 c1 99 0d 95 9c 42 c2 b0 77 e9 dd 96 2c 7c 09 5e 9b 7d 44 fe 56 8a f2 06 47 72 65 61 74 21>
+
+memopress.encode('0x8d04', 'c21cdbc06393e291fe325649a6b52409759c1abf98950165f818abd44812ce12');
+// <Buffer 6a 02 8d 04 20 12 ce 12 48 d4 ab 18 f8 65 01 95 98 bf 1a 9c 75 09 24 b5 a6 49 56 32 fe 91 e2 93 63 c0 db 1c c2>
+
+memopress.encode('0x8d06', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
+// <Buffer 6a 02 8d 06 36 62 69 74 63 6f 69 6e 63 61 73 68 3a 71 7a 7a 73 65 63 78 77 76 38 67 6d 33 34 78 6d 68 68 33 36 30 79 74 75 7a 65 71 78 72 6a 61 37 7a ... >
+
+memopress.encode('0x8d07', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
+// <Buffer 6a 02 8d 07 36 62 69 74 63 6f 69 6e 63 61 73 68 3a 71 7a 7a 73 65 63 78 77 76 38 67 6d 33 34 78 6d 68 68 33 36 30 79 74 75 7a 65 71 78 72 6a 61 37 7a ... >
+
+memopress.encode('0x8d08', 'https://ipfs.pics/ipfs/QmXaWRFhu6G6yCcy7dftsiehY8obJmX17hRtZr7BHyCbZC');
+// <Buffer 6a 02 8d 08 45 68 74 74 70 73 3a 2f 2f 69 70 66 73 2e 70 69 63 73 2f 69 70 66 73 2f 51 6d 58 61 57 52 46 68 75 36 47 36 79 43 63 79 37 64 66 74 73 69 ... >
+
+memopress.encode('0x8d10', 'https://ipfs.pics/ipfs/QmXaWRFhu6G6yCcy7dftsiehY8obJmX17hRtZr7BHyCbZC');
+// <Buffer 6a 02 8d 10 45 68 74 74 70 73 3a 2f 2f 69 70 66 73 2e 70 69 63 73 2f 69 70 66 73 2f 51 6d 58 61 57 52 46 68 75 36 47 36 79 43 63 79 37 64 66 74 73 69 ... >
+
+memopress.encode('0x8d11', {community: 'Crypto', message: 'BCH is Bitcoin'});
+// <Buffer 6a 02 8d 11 06 43 72 79 70 74 6f 0e 42 43 48 20 69 73 20 42 69 74 63 6f 69 6e>
 ```
 
 ### Decode
@@ -175,54 +193,4 @@ memopress.decode('OP_RETURN 4493 30324 4c6f73743a2054686520436f6d706c65746520436
 //   prefix: '0x8d11',
 //   action: 'Create Post in Community',
 //   message: 'Lost: The Complete Collection - Seasons 1 - 6' }
-```
-
-
-```js
-let memopress = require('memopress');
-let change = BITBOX.HDNode.fromXPriv('xprvA3YpFQjhf65qaZeFxfWnbfaq5JwGxit4q1tsspADKg78bKNvPYbUHVVATFjrs2o5uba3p64E6mB3pMHtukZJkAr11KtbG9fEt4M4sZjVVRm');
-BITBOX.Address.utxo('bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m').then((result) => {
-  // instance of transaction builder
-  let transactionBuilder = new BITBOX.TransactionBuilder('bitcoincash');
-
-    let originalAmount = result[0].satoshis;
-
-  // index of vout
-  let vout = result[0].vout;
-
-  // txid of vout
-  let txid = result[0].txid;
-
-  // add input with txid and index of vout
-  transactionBuilder.addInput(txid, vout);
-
-  // get byte count to calculate fee. paying 1 sat/byte
-  let byteCount = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: 4 });
-
-  // amount to send to receiver. It's the original amount - 1 sat/byte for tx size
-  let sendAmount = originalAmount - byteCount;
-
-  // add output w/ address and amount to send
-  transactionBuilder.addOutput('bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m', sendAmount);
-
-  // encode w/ OP_RETURN
-  let data = memopress.encode('0x8d03', {txHash: '99c38277ce297711b78ff09aa6857417a3b8df1873987b2a17b44b27877972ab', message: 'Great!'});
-  console.log(data)
-
-  transactionBuilder.addOutput(data, 0);
-
-  // keypair
-  let keyPair = BITBOX.HDNode.toKeyPair(change);
-
-  // sign w/ HDNode
-  let redeemScript;
-  transactionBuilder.sign(0, keyPair, redeemScript, transactionBuilder.hashTypes.SIGHASH_ALL, originalAmount);
-
-  // build tx
-  let tx = transactionBuilder.build();
-  // output rawhex
-  let hex = tx.toHex();
-  console.log(hex);
-}, (err) => { console.log(err);
-});
 ```
