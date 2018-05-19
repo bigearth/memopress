@@ -50,6 +50,9 @@ memopress.encode('0x6d0C', 'Crypto', 'BCH is Bitcoin');
 
 ```js
 memopress.encode('0x8d01', 'nakamoto')
+// <Buffer 6a 02 8d 01 08 6e 61 6b 61 6d 6f 74 6f>
+
+memopress.encode('0x8d02', 'Hello BITBOX')
 ```
 
 ### Decode

@@ -53,6 +53,22 @@ exports.encode = (prefix, value) => {
   } else if(_.includes(blockpressPrefixes, prefix)){
     if(prefix === '0x8d01') {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d01', 'hex'), Buffer.from(value)];
+    } else if(prefix === '0x8d02') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d02', 'hex'), Buffer.from(value)];
+    } else if(prefix === '0x8d03') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d03', 'hex'), Buffer.from(value.txHash.match(/[a-fA-F0-9]{2}/g).reverse().join(''), 'hex'), Buffer.from(value.message)];
+    } else if(prefix === '0x8d04') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d04', 'hex'), Buffer.from(value.match(/[a-fA-F0-9]{2}/g).reverse().join(''), 'hex')];
+    } else if(prefix === '0x8d06') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d06', 'hex'), Buffer.from(value)];
+    } else if(prefix === '0x8d07') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d07', 'hex'), Buffer.from(value)];
+    } else if(prefix === '0x8d08')  {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d08', 'hex'), Buffer.from(value)];
+    } else if(prefix === '0x8d09') {
+    } else if(prefix === '0x8d10') {
+    } else if(prefix === '0x8d11') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d11', 'hex'), Buffer.from(value.community), Buffer.from(value.message)];
     }
   }
   return BITBOX.Script.encode(script)
