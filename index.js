@@ -14,10 +14,20 @@ let memoConvertedPrefixes = [365, 621, 877, 1133, 1389, 1645, 1901, 3181];
 let blockpressPrefixes = ['0x8d01', '0x8d02', '0x8d03', '0x8d04', '0x8d05', '0x8d06', '0x8d07', '0x8d08', '0x8d09', '0x8d01', '0x8d10', '0x8d11'];
 let blockpressConvertedPrefixes = [397, 653, 909, 1165, 1677, 1933, 2189, 2445, 4237, 4493];
 
-let setName = (name) => {
-  let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(name)];
-  return BITBOX.Script.encode(script)
-}
+// let like = (txHash) => {
+//   let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d04', 'hex'), Buffer.from(txHash)];
+//   return BITBOX.Script.encode(script)
+// }
+//
+// let follow = (address) => {
+//   let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d06', 'hex'), Buffer.from(address)];
+//   return BITBOX.Script.encode(script)
+// }
+//
+// let unfollow = (address) => {
+//   let script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d07', 'hex'), Buffer.from(address)];
+//   return BITBOX.Script.encode(script)
+// }
 
 exports.encode = (prefix, value) => {
   let data;
@@ -25,6 +35,8 @@ exports.encode = (prefix, value) => {
     let script;
     if(prefix === '0x6d01') {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(value)];
+    } else if(prefix === '0x6d02') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d02', 'hex'), Buffer.from(value)];
     }
 
     return BITBOX.Script.encode(script)
