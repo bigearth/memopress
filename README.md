@@ -39,7 +39,10 @@ memopress.encode('0x6d05', 'This is my profile text');
 memopress.encode('0x6d06', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
 // <Buffer 6a 02 6d 06 36 62 69 74 63 6f 69 6e 63 61 73 68 3a 71 7a 7a 73 65 63 78 77 76 38 67 6d 33 34 78 6d 68 68 33 36 30 79 74 75 7a 65 71 78 72 6a 61 37 7a ... >
 
-memopress.encode('0x6d0', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
+memopress.encode('0x6d07', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
+// <Buffer 6a 02 6d 07 36 62 69 74 63 6f 69 6e 63 61 73 68 3a 71 7a 7a 73 65 63 78 77 76 38 67 6d 33 34 78 6d 68 68 33 36 30 79 74 75 7a 65 71 78 72 6a 61 37 7a ... >
+
+memopress.encode('0x6d0C', 'Crypto', 'BCH is Bitcoin');
 ```
 
 ### Decode
