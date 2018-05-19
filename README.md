@@ -70,7 +70,8 @@ memopress.encode('0x8d07', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg7
 memopress.encode('0x8d08', 'https://ipfs.pics/ipfs/QmXaWRFhu6G6yCcy7dftsiehY8obJmX17hRtZr7BHyCbZC');
 // <Buffer 6a 02 8d 08 45 68 74 74 70 73 3a 2f 2f 69 70 66 73 2e 70 69 63 73 2f 69 70 66 73 2f 51 6d 58 61 57 52 46 68 75 36 47 36 79 43 63 79 37 64 66 74 73 69 ... >
 
-memopress.encode('0x8d09', {mediaType: 'image', mediaPayload: 'https://bit.ly/2FYUrea', mediaText: 'shamone'});
+memopress.encode('0x8d09', {mediaType: '0x01', mediaPayload: 'https://bit.ly/2FYUrea', mediaText: 'shamone'});
+// <Buffer 6a 02 8d 09 00 16 68 74 74 70 73 3a 2f 2f 62 69 74 2e 6c 79 2f 32 46 59 55 72 65 61 07 73 68 61 6d 6f 6e 65>
 
 memopress.encode('0x8d10', 'https://ipfs.pics/ipfs/QmXaWRFhu6G6yCcy7dftsiehY8obJmX17hRtZr7BHyCbZC');
 // <Buffer 6a 02 8d 10 45 68 74 74 70 73 3a 2f 2f 69 70 66 73 2e 70 69 63 73 2f 69 70 66 73 2f 51 6d 58 61 57 52 46 68 75 36 47 36 79 43 63 79 37 64 66 74 73 69 ... >
