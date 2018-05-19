@@ -53,6 +53,10 @@ memopress.encode('0x8d01', 'nakamoto')
 // <Buffer 6a 02 8d 01 08 6e 61 6b 61 6d 6f 74 6f>
 
 memopress.encode('0x8d02', 'Hello BITBOX')
+// <Buffer 6a 02 8d 02 0c 48 65 6c 6c 6f 20 42 49 54 42 4f 58>
+
+memopress.encode('0x8d03', {txHash: '99c38277ce297711b78ff09aa6857417a3b8df1873987b2a17b44b27877972ab', message: 'Great!'});
+// <Buffer 6a 02 8d 03 20 ab 72 79 87 27 4b b4 17 2a 7b 98 73 18 df b8 a3 17 74 85 a6 9a f0 8f b7 11 77 29 ce 77 82 c3 99 06 47 72 65 61 74 21>
 ```
 
 ### Decode
@@ -171,4 +175,54 @@ memopress.decode('OP_RETURN 4493 30324 4c6f73743a2054686520436f6d706c65746520436
 //   prefix: '0x8d11',
 //   action: 'Create Post in Community',
 //   message: 'Lost: The Complete Collection - Seasons 1 - 6' }
+```
+
+
+```js
+let memopress = require('memopress');
+let change = BITBOX.HDNode.fromXPriv('xprvA3YpFQjhf65qaZeFxfWnbfaq5JwGxit4q1tsspADKg78bKNvPYbUHVVATFjrs2o5uba3p64E6mB3pMHtukZJkAr11KtbG9fEt4M4sZjVVRm');
+BITBOX.Address.utxo('bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m').then((result) => {
+  // instance of transaction builder
+  let transactionBuilder = new BITBOX.TransactionBuilder('bitcoincash');
+
+    let originalAmount = result[0].satoshis;
+
+  // index of vout
+  let vout = result[0].vout;
+
+  // txid of vout
+  let txid = result[0].txid;
+
+  // add input with txid and index of vout
+  transactionBuilder.addInput(txid, vout);
+
+  // get byte count to calculate fee. paying 1 sat/byte
+  let byteCount = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: 4 });
+
+  // amount to send to receiver. It's the original amount - 1 sat/byte for tx size
+  let sendAmount = originalAmount - byteCount;
+
+  // add output w/ address and amount to send
+  transactionBuilder.addOutput('bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m', sendAmount);
+
+  // encode w/ OP_RETURN
+  let data = memopress.encode('0x8d03', {txHash: '99c38277ce297711b78ff09aa6857417a3b8df1873987b2a17b44b27877972ab', message: 'Great!'});
+  console.log(data)
+
+  transactionBuilder.addOutput(data, 0);
+
+  // keypair
+  let keyPair = BITBOX.HDNode.toKeyPair(change);
+
+  // sign w/ HDNode
+  let redeemScript;
+  transactionBuilder.sign(0, keyPair, redeemScript, transactionBuilder.hashTypes.SIGHASH_ALL, originalAmount);
+
+  // build tx
+  let tx = transactionBuilder.build();
+  // output rawhex
+  let hex = tx.toHex();
+  console.log(hex);
+}, (err) => { console.log(err);
+});
 ```
