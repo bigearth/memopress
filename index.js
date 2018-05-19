@@ -66,7 +66,9 @@ exports.encode = (prefix, value) => {
     } else if(prefix === '0x8d08')  {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d08', 'hex'), Buffer.from(value)];
     } else if(prefix === '0x8d09') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d09', 'hex'), Buffer.from(value.mediaType), Buffer.from(value.mediaPayload)];
     } else if(prefix === '0x8d10') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d10', 'hex'), Buffer.from(value)];
     } else if(prefix === '0x8d11') {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('8d11', 'hex'), Buffer.from(value.community), Buffer.from(value.message)];
     }
