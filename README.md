@@ -97,7 +97,7 @@ memopress.decode('OP_RETURN 621 4c6f72656d20697073756d20646f6c6f722073697420616d
 //   action: 'Post Memo',
 //   message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' }
 
-memopress.decode('877 fe32a4bc5a52ce9b861725462ad7d5d223d3554532eb172c7d29feca5722d44c 5468616e6b7320666f72207469707072626f7421');
+  memopress.decode('OP_RETURN 877 fe32a4bc5a52ce9b861725462ad7d5d223d3554532eb172c7d29feca5722d44c 5468616e6b7320666f72207469707072626f7421');
 // { service: 'memo',
 //   prefix: '0x6d03',
 //   action: 'Reply',
