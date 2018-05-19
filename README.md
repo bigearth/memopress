@@ -34,6 +34,12 @@ memopress.encode('0x6d04', 'c21cdbc06393e291fe325649a6b52409759c1abf98950165f818
 // <Buffer 6a 02 6d 04 20 12 ce 12 48 d4 ab 18 f8 65 01 95 98 bf 1a 9c 75 09 24 b5 a6 49 56 32 fe 91 e2 93 63 c0 db 1c c2>
 
 memopress.encode('0x6d05', 'This is my profile text');
+// <Buffer 6a 02 6d 05 17 54 68 69 73 20 69 73 20 6d 79 20 70 72 6f 66 69 6c 65 20 74 65 78 74>
+
+memopress.encode('0x6d06', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
+// <Buffer 6a 02 6d 06 36 62 69 74 63 6f 69 6e 63 61 73 68 3a 71 7a 7a 73 65 63 78 77 76 38 67 6d 33 34 78 6d 68 68 33 36 30 79 74 75 7a 65 71 78 72 6a 61 37 7a ... >
+
+memopress.encode('0x6d0', 'bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m');
 ```
 
 ### Decode

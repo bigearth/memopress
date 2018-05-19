@@ -1,6 +1,6 @@
 {
   "name": "memopress",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "lib for working w/ Memo/Blockpress OP_RETURN",
   "main": "index.js",
   "scripts": {
