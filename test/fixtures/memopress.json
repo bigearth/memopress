@@ -1,5 +1,54 @@
 {
-  "memo": [
+  "memo": {
+    "encode": [
+      {
+        "prefix": "0x6d01",
+        "data": "nakamoto",
+        "hex": "6a026d01086e616b616d6f746f"
+      },
+      {
+        "prefix": "0x6d02",
+        "data": "Hello BITBOX",
+        "hex": "6a026d020c48656c6c6f20424954424f58"
+      },
+      {
+        "prefix": "0x6d03",
+        "data": {
+          "txHash": "99c38277ce297711b78ff09aa6857417a3b8df1873987b2a17b44b27877972ab",
+          "message": "Great!"
+        },
+        "hex": "6a026d0320ab727987274bb4172a7b987318dfb8a3177485a69af08fb7117729ce7782c39906477265617421"
+      },
+      {
+        "prefix": "0x6d04",
+        "data": "c21cdbc06393e291fe325649a6b52409759c1abf98950165f818abd44812ce12",
+        "hex": "6a026d042012ce1248d4ab18f865019598bf1a9c750924b5a6495632fe91e29363c0db1cc2"
+      },
+      {
+        "prefix": "0x6d05",
+        "data": "This is my profile text",
+        "hex": "6a026d051754686973206973206d792070726f66696c652074657874"
+      },
+      {
+        "prefix": "0x6d06",
+        "data": "bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m",
+        "hex": "6a026d0636626974636f696e636173683a717a7a73656378777638676d3334786d68683336307974757a657178726a61377a736e66766c6737396d"
+      },
+      {
+        "prefix": "0x6d07",
+        "data": "bitcoincash:qzzsecxwv8gm34xmhh360ytuzeqxrja7zsnfvlg79m",
+        "hex": "6a026d0736626974636f696e636173683a717a7a73656378777638676d3334786d68683336307974757a657178726a61377a736e66766c6737396d"
+      },
+      {
+        "prefix": "0x6d0C",
+        "data": {
+          "topic": "Crypto",
+          "message": "BCH is Bitcoin"
+        },
+        "hex": "6a026d0c0643727970746f0e42434820697320426974636f696e"
+      }
+    ],
+    "decode": [
     {
       "asm": "OP_RETURN 365 746573742032",
       "data": {
@@ -72,8 +121,10 @@
         "message": "Let's talk about Techno"
       }
     }
-  ],
-  "blockpress": [
+  ]},
+  "blockpress": {
+    "encode": [],
+    "decode": [
     {
       "asm": "OP_RETURN 397 6e616b616d6f746f",
       "data": {
@@ -164,5 +215,5 @@
         "message": "Lost: The Complete Collection - Seasons 1 - 6"
       }
     }
-  ]
+  ]}
 }
