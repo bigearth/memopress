@@ -1,6 +1,6 @@
 {
   "name": "memopress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "lib for working w/ Memo/Blockpress OP_RETURN",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/bigearth/memopress#readme",
   "dependencies": {
+    "bitbox-cli": "^0.7.28",
     "underscore": "^1.9.0"
   },
   "devDependencies": {
