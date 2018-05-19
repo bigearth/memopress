@@ -37,6 +37,8 @@ exports.encode = (prefix, value) => {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d01', 'hex'), Buffer.from(value)];
     } else if(prefix === '0x6d02') {
       script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d02', 'hex'), Buffer.from(value)];
+    } else if(prefix === '0x6d03') {
+      script = [BITBOX.Script.opcodes.OP_RETURN, Buffer.from('6d03', 'hex'), Buffer.from(value.txHash), Buffer.from(value.message)];
     }
 
     return BITBOX.Script.encode(script)
